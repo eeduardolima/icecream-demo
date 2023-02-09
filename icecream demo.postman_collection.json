@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "2947984d-4879-4cdf-85aa-28b4a53e80c0",
+		"name": "icecream demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/v1/flavor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "laranja",
+							"type": "default"
+						},
+						{
+							"key": "price",
+							"value": "2.50",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/flavor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"flavor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/flavor/{name}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "new_price",
+							"value": "5.50",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/flavor/laranja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"flavor",
+						"laranja"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/flavor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/flavor/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"flavor",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/inventory/flavor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "flavor",
+							"value": "laranja",
+							"type": "default"
+						},
+						{
+							"key": "stock",
+							"value": "10",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/inventory/flavor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"inventory",
+						"flavor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/inventory/flavor/{flavorName}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "newStock",
+							"value": "7",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/inventory/flavor/laranja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"inventory",
+						"flavor",
+						"laranja"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/inventory/flavor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/inventory/flavor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"inventory",
+						"flavor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/sale/flavor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "flavor",
+							"value": "laranja",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/inventory/flavor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"inventory",
+						"flavor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/sale/flavor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/sale/flavor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"sale",
+						"flavor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/v1/sale/flavor/{flavorName}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"To have status code equals 200\", function() {\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/inventory/flavor/laranja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"inventory",
+						"flavor",
+						"laranja"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
