@@ -42,6 +42,7 @@ public class Inventory {
         return InventoryDto.builder()
                 .id(id)
                 .stock(stock)
+                .flavor(flavor.getName())
                 .build();
     }
 }

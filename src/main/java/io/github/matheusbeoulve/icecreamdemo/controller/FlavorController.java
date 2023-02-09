@@ -21,7 +21,7 @@ public class FlavorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FlavorDto>> inStockFlavors() {
+    public ResponseEntity<List<FlavorDto>> allFlavors() {
         return ResponseEntity.ok(flavorService.allFlavors());
     }
 

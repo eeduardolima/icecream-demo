@@ -24,10 +24,10 @@ public class InventoryController {
         return ResponseEntity.ok(inventoryService.fullInventory());
     }
 
-    @PostMapping("/{flavorName}")
-    public ResponseEntity<InventoryDto> newInventory(@PathVariable String flavorName,
+    @PostMapping
+    public ResponseEntity<InventoryDto> newInventory(@RequestParam String flavor,
                                                      @RequestParam Long stock) {
-        return ResponseEntity.ok(inventoryService.newInventory(flavorName, stock));
+        return ResponseEntity.ok(inventoryService.newInventory(flavor, stock));
     }
 
     @PutMapping("/{flavorName}")
