@@ -9,8 +9,10 @@ import java.math.BigDecimal;
 @Value
 @Builder
 @Jacksonized
-public class InventoryDto {
+public class SaleDto {
+
     Long id;
-    String flavor;
-    BigDecimal stock;
+    String flavorName;
+    BigDecimal price;
+    BigDecimal totalPrice;
 }

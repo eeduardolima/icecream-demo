@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -26,13 +27,13 @@ public class InventoryController {
 
     @PostMapping
     public ResponseEntity<InventoryDto> newInventory(@RequestParam String flavor,
-                                                     @RequestParam Long stock) {
+                                                     @RequestParam BigDecimal stock) {
         return ResponseEntity.ok(inventoryService.newInventory(flavor, stock));
     }
 
     @PutMapping("/{flavorName}")
     public ResponseEntity<InventoryDto> updateInventory(@PathVariable String flavorName,
-                                                        @RequestParam Long newStock) {
+                                                        @RequestParam BigDecimal newStock) {
         return ResponseEntity.ok(inventoryService.updateInventory(flavorName, newStock));
     }
 }

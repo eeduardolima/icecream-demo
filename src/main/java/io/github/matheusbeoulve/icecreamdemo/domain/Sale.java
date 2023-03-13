@@ -1,5 +1,7 @@
 package io.github.matheusbeoulve.icecreamdemo.domain;
 
+import io.github.matheusbeoulve.icecreamdemo.dto.FlavorDto;
+import io.github.matheusbeoulve.icecreamdemo.dto.SaleDto;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -41,4 +43,13 @@ public class Sale {
 
     @UpdateTimestamp
     private LocalDateTime update;
+
+    public SaleDto saleToDto() {
+        return SaleDto.builder()
+                .id(id)
+                .flavorName(flavor.getName())
+                .price(flavor.getCurrentPrice())
+                .totalPrice(price)
+                .build();
+    }
 }

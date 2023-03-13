@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,7 @@ public class InventoryService {
 
     @Transactional
     public InventoryDto newInventory(@NonNull String flavorName,
-                                     @NonNull Long stock) {
+                                     @NonNull BigDecimal stock) {
         Flavor f = flavorRepository.findByName(flavorName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         Inventory i = Inventory.builder()
@@ -49,7 +50,7 @@ public class InventoryService {
     }
 
     @Transactional
-    public InventoryDto updateInventory(String flavorName, Long newStock) {
+    public InventoryDto updateInventory(String flavorName, BigDecimal newStock) {
         Inventory i = flavorRepository.findByName(flavorName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
                 .getInventory()
