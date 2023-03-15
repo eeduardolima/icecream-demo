@@ -11,6 +11,7 @@ import io.github.matheusbeoulve.icecreamdemo.repository.SaleRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -52,10 +53,15 @@ public class SaleService {
         Inventory inventory = inventoryRepository.findByFlavor(flavor).orElseThrow(RuntimeException::new);
         BigDecimal newStock = inventory.getStock().subtract(quantity);
 
-        // criar validacao para validar se há quantidade disponível em estoque
-//        if (inventory.getStock() < newStock){
-//            throw new RuntimeException("Quantidade em estoque inferior ao solicitado.");
-//        }
+        double quantityInt = quantity.doubleValue();
+        double getStockInt = inventory.getStock().doubleValue();
+
+        // validacao para validar se há quantidade disponível em estoque
+        // ver com o Matheus como criar o status code 400 para este caso, retornando a mensagem da exception
+        if (quantityInt > getStockInt){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new RuntimeException("Quantidade em estoque inferior ao solicitado.");
+        }
 
         Inventory i = flavorRepository.findByName(flavorName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
@@ -68,18 +74,30 @@ public class SaleService {
         var s = Sale.builder()
                 .flavor(flavor)
                 .price(flavor.getCurrentPrice().multiply(quantity))
+                .quantity(quantity)
                 .status(SaleStatus.COMPLETED)
                 .build();
         var savedSale = saleRepository.save(s);
         return savedSale.saleToDto();
     }
 
-    // criar update para colocar a venda no status cancelado
     @Transactional
-    public Optional<SaleDto> updateSale(@NonNull Long id, @NonNull BigDecimal newPrice) {
+    public Optional<SaleDto> updateSale(@NonNull Long id) {
+
+        Sale s = saleRepository.findById(id).orElseThrow(RuntimeException::new);
+        Inventory i = inventoryRepository.findByFlavor(s.getFlavor()).orElseThrow(RuntimeException::new);
+
+        Inventory returnStock = flavorRepository.findByName(i.getFlavor().getName())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
+                .getInventory()
+                .toBuilder()
+                .stock(i.getStock().add(s.getQuantity()))
+                .build();
+        inventoryRepository.save(returnStock);
+
         return saleRepository.findById(id)
                 .map(sale -> sale.toBuilder()
-                        .price(newPrice)
+                        .status(SaleStatus.CANCELED)
                         .build())
                 .map(saleRepository::save)
                 .map(Sale::saleToDto);

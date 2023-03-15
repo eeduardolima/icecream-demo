@@ -34,8 +34,7 @@ public class SaleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SaleDto> updateSale(@PathVariable Long id,
-                                              @RequestParam("new_price") BigDecimal newPrice){
-        return ResponseEntity.of(saleService.updateSale(id, newPrice));
+    public ResponseEntity<SaleDto> updateSale(@PathVariable Long id){
+        return ResponseEntity.of(saleService.updateSale(id));
     }
 }

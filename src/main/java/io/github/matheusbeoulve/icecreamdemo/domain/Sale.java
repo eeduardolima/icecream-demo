@@ -44,12 +44,16 @@ public class Sale {
     @UpdateTimestamp
     private LocalDateTime update;
 
+    private BigDecimal quantity;
+
     public SaleDto saleToDto() {
         return SaleDto.builder()
                 .id(id)
                 .flavorName(flavor.getName())
                 .price(flavor.getCurrentPrice())
+                .quantity(quantity)
                 .totalPrice(price)
+                .status(status)
                 .build();
     }
 }
